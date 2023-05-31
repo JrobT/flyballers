@@ -1,0 +1,11 @@
+# IDE-related files
+.vscode
+
+# Dependency directories
+node_modules
+
+# Generated files
+web/public/mockServiceWorker.js
+web/types/graphql.d.ts
+api/src/lib/generateGraphiQLHeader.*
+api/types/graphql.d.ts

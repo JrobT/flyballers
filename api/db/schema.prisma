@@ -1,6 +1,7 @@
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgres"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 generator client {
@@ -8,11 +9,76 @@ generator client {
   binaryTargets = "native"
 }
 
-// Define your own datamodels here and run `yarn redwood prisma migrate dev`
-// to create migrations for them and apply to your dev DB.
-// TODO: Please remove the following example:
-model UserExample {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+enum Class {
+  FOUNDATION
+  OPEN
+}
+
+enum Type {
+  SINGLES
+  TEAMS
+}
+
+model Club {
+  id      Int      @id @default(autoincrement())
+  contact Contact?
+  events  Event[]
+  name    String   @db.VarChar(255)
+
+  @@index([name])
+}
+
+model Contact {
+  id     Int    @id @default(autoincrement())
+  club   Club   @relation(fields: [clubId], references: [id])
+  clubId Int    @unique
+  email  String @unique @db.VarChar(255)
+  name   String @db.VarChar(255)
+}
+
+model Event {
+  id        Int        @id @default(autoincrement())
+  club      Club       @relation(fields: [clubId], references: [id])
+  clubId    Int
+  eventDays EventDay[]
+  name      String     @db.VarChar(255)
+
+  @@index([clubId])
+  @@index([name])
+}
+
+model EventDay {
+  id       Int       @id @default(autoincrement())
+  date     DateTime
+  eventId  Int
+  event    Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  schedule Schedule?
+
+  @@index([date])
+  @@index([eventId])
+}
+
+model Schedule {
+  id         Int      @id @default(autoincrement())
+  eventDay   EventDay @relation(fields: [eventDayId], references: [id])
+  eventDayId Int      @unique
+  races      Race[]
+
+  @@index([eventDayId])
+}
+
+model Race {
+  id         Int      @id @default(autoincrement())
+  class      Class
+  division   Int      @db.SmallInt
+  schedule   Schedule @relation(fields: [scheduleId], references: [id])
+  scheduleId Int
+  team1      String   @db.VarChar(255)
+  team2      String   @db.VarChar(255)
+  type       Type
+
+  @@index([class])
+  @@index([team1])
+  @@index([team2])
+  @@index([type])
 }

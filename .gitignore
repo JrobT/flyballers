@@ -1,17 +1,31 @@
-.idea
+# IDE-related files
 .DS_Store
+.idea
+.vscode
+
+# Environment files
 .env
+
+# Build and deployment artifacts
 .netlify
 .redwood
 dev.db*
 dist
 dist-babel
+
+# Dependency directories
 node_modules
+
+# Logs and error files
 yarn-error.log
+
+# Generated files
 web/public/mockServiceWorker.js
 web/types/graphql.d.ts
 api/types/graphql.d.ts
 api/src/lib/generateGraphiQLHeader.*
+
+# Package manager
 .pnp.*
 .yarn/*
 !.yarn/patches

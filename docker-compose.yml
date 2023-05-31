@@ -1,0 +1,16 @@
+# This file builds a local postgres container for running e2e tests locally.
+# A postgres service handles this for us for the CI workflow.
+
+version: "3.9"
+
+services:
+  db:
+    container_name: integration-tests-local
+    image: postgres
+    ports:
+      - 5433:5432
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres

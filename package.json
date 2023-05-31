@@ -1,24 +1,38 @@
 {
-  "private": true,
-  "workspaces": {
-    "packages": [
-      "api",
-      "web"
-    ]
-  },
   "devDependencies": {
+    "@redwoodjs/auth-supabase-setup": "5.2.3",
     "@redwoodjs/core": "5.2.3"
-  },
-  "eslintConfig": {
-    "extends": "@redwoodjs/eslint-config",
-    "root": true
   },
   "engines": {
     "node": "=18.x",
     "yarn": ">=1.15"
   },
+  "eslintConfig": {
+    "extends": "@redwoodjs/eslint-config",
+    "root": true
+  },
+  "lint-staged": {
+    "(api|web)/src/**/*.{js,jsx,ts,tsx}": [
+      "yarn rw type-check",
+      "yarn lint"
+    ]
+  },
+  "packageManager": "yarn@3.5.1",
   "prisma": {
     "seed": "yarn rw exec seed"
   },
-  "packageManager": "yarn@3.5.1"
+  "private": true,
+  "scripts": {
+    "docker:down": "docker-compose down",
+    "docker:up": "docker-compose up -d",
+    "format": "eslint --ext .js,jsx,.ts,.tsx --fix --max-warnings 0 . && prettier --write \"(api|web)/src/**/*.{js,jsx,ts,tsx}\" --loglevel warn && yarn rw prisma format",
+    "lint": "eslint --ext .js,jsx,.ts,.tsx . && prettier --check \"(api|web)/src/**/*.{js,jsx,ts,tsx}\" --loglevel warn",
+    "test": "yarn docker:up && yarn rw test && yarn docker:down"
+  },
+  "workspaces": {
+    "packages": [
+      "api",
+      "web"
+    ]
+  }
 }
