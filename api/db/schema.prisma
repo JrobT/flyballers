@@ -19,10 +19,22 @@ enum Type {
   TEAMS
 }
 
+model User {
+  id        Int      @id @default(autoincrement())
+  club      Club     @relation(fields: [clubId], references: [id])
+  clubId    Int      @unique
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String?
+  photoUrl  String?
+  updatedAt DateTime @updatedAt
+}
+
 model Club {
   id      Int      @id @default(autoincrement())
   contact Contact?
   events  Event[]
+  members User[]
   name    String   @db.VarChar(255)
 
   @@index([name])

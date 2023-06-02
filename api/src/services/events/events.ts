@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import type {
   QueryResolvers,
   MutationResolvers,
@@ -6,7 +7,78 @@ import type {
 
 import { db } from 'src/lib/db'
 
-export const events: QueryResolvers['events'] = () => db.event.findMany()
+import { onlyOne } from '../utils/arrays'
+import { getStartOfDate } from '../utils/date'
+import { PaginationParams, SKIP_DEFAULT } from '../utils/pagination'
+
+type EventsQueryParams = {
+  inProgressOnly?: boolean
+  pastOnly?: boolean
+  upcomingOnly?: boolean
+} & PaginationParams
+
+export const events: QueryResolvers['events'] = async ({
+  inProgressOnly = false,
+  pastOnly = false,
+  skip = SKIP_DEFAULT,
+  upcomingOnly = false,
+}: EventsQueryParams) => {
+  const isQueryForAllEvents = [inProgressOnly, pastOnly, upcomingOnly].every(
+    (queryParam) => !queryParam
+  )
+  const hasValidQueryParams =
+    onlyOne(inProgressOnly, pastOnly, upcomingOnly) || isQueryForAllEvents
+  if (!hasValidQueryParams) throw new Error('Invalid query parameters')
+
+  const EVENTS_PER_PAGE = 10
+  const take = skip > 0 && (skip - 1) * EVENTS_PER_PAGE
+  const events = await db.event.findMany({
+    include: {
+      club: true,
+      eventDays: {
+        orderBy: { date: 'asc' },
+      },
+    },
+    ...(skip && skip > 0 && { skip }),
+    ...(take && { take }),
+  })
+
+  // Events will be in Date order from the first day of the event.
+  const orderedEvents = events.sort((a, b) => {
+    const dateA = a.eventDays[0]?.date || ''
+    const dateB = b.eventDays[0]?.date || ''
+    return dateA.toString().localeCompare(dateB.toString())
+  })
+
+  if (isQueryForAllEvents) return orderedEvents
+
+  const today = dayjs().startOf('day')
+
+  // An event is in progress if today is after the first day,
+  // but before the last day.
+  if (inProgressOnly)
+    return orderedEvents.filter(
+      (event) =>
+        today.isAfter(getStartOfDate(event.eventDays[0].date)) &&
+        today.isBefore(
+          getStartOfDate(event.eventDays[event.eventDays.length - 1].date)
+        )
+    )
+
+  // An event is finished if today is after the last day.
+  if (pastOnly)
+    return orderedEvents.filter((event) =>
+      today.isAfter(
+        getStartOfDate(event.eventDays[event.eventDays.length - 1].date)
+      )
+    )
+
+  // An event is upcoming if today is before the first day.
+  if (upcomingOnly)
+    return orderedEvents.filter((event) =>
+      today.isBefore(getStartOfDate(event.eventDays[0].date))
+    )
+}
 
 export const event: QueryResolvers['event'] = ({ id }) =>
   db.event.findUnique({
@@ -30,6 +102,8 @@ export const deleteEvent: MutationResolvers['deleteEvent'] = ({ id }) =>
   })
 
 export const Event: EventRelationResolvers = {
-  club: (_obj, { root }) => db.event.findUnique({ where: { id: root?.id } }).club(),
-  eventDays: (_obj, { root }) => db.event.findUnique({ where: { id: root?.id } }).eventDays(),
+  club: (_obj, { root }) =>
+    db.event.findUnique({ where: { id: root?.id } }).club(),
+  eventDays: (_obj, { root }) =>
+    db.event.findUnique({ where: { id: root?.id } }).eventDays(),
 }

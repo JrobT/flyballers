@@ -1,38 +1,44 @@
-import type { Prisma } from '@prisma/client'
 import { db } from 'api/src/lib/db'
+import dayjs from 'dayjs'
 
 export default async () => {
   try {
-    //
-    // Manually seed via `yarn rw prisma db seed`
-    // Seeds automatically with `yarn rw prisma migrate dev` and `yarn rw prisma migrate reset`
-    //
-    // Update "const data = []" to match your data model and seeding needs
-    //
-    const data: Prisma.UserExampleCreateArgs['data'][] = [
-      // To try this example data with the UserExample model in schema.prisma,
-      // uncomment the lines below and run 'yarn rw prisma migrate dev'
-      //
-      // { name: 'alice', email: 'alice@example.com' },
-      // { name: 'mark', email: 'mark@example.com' },
-      // { name: 'jackie', email: 'jackie@example.com' },
-      // { name: 'bob', email: 'bob@example.com' },
-    ]
-    console.log(
-      "\nUsing the default './scripts/seed.{js,ts}' template\nEdit the file to add seed data\n"
-    )
+    const today = dayjs().startOf('day')
+    const yesterday = today.subtract(1, 'day')
+    const theDayBeforeYesterday = yesterday.subtract(1, 'day')
+    const twoDaysBack = theDayBeforeYesterday.subtract(1, 'day')
+    const tomorrow = today.add(1, 'day')
+    const theDayAfterTomorrow = tomorrow.add(1, 'day')
+    const theDayAfterTheDayAfterTomorrow = theDayAfterTomorrow.add(1, 'day')
 
-    // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
-    // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
-    Promise.all(
-      //
-      // Change to match your data model and seeding needs
-      //
-      data.map(async (data: Prisma.UserExampleCreateArgs['data']) => {
-        const record = await db.userExample.create({ data })
-        console.log(record)
-      })
-    )
+    await db.club.createMany({
+      data: [{ name: 'Bassetts' }, { name: 'TVR' }],
+    })
+    await db.event.createMany({
+      data: [
+        { clubId: 1, name: 'A super fun event' },
+        { clubId: 1, name: 'Event' },
+        { clubId: 1, name: 'An event with a really really long name' },
+        { clubId: 2, name: "A different club's event" },
+      ],
+    })
+    await db.eventDay.createMany({
+      data: [
+        // A past event.
+        { eventId: 1, date: twoDaysBack.toDate() },
+        { eventId: 1, date: theDayBeforeYesterday.toDate() },
+        { eventId: 1, date: yesterday.toDate() },
+        // An event in progress.
+        { eventId: 2, date: today.toDate() },
+        { eventId: 2, date: tomorrow.toDate() },
+        { eventId: 2, date: theDayAfterTomorrow.toDate() },
+        // eventId: 3 has no eventDays.
+        // A future event.
+        { eventId: 4, date: tomorrow.toDate() },
+        { eventId: 4, date: theDayAfterTomorrow.toDate() },
+        { eventId: 4, date: theDayAfterTheDayAfterTomorrow.toDate() },
+      ],
+    })
 
     // If using dbAuth and seeding users, you'll need to add a `hashedPassword`
     // and associated `salt` to their record. Here's how to create them using

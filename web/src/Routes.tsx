@@ -1,18 +1,28 @@
 import { Set, Router, Route } from '@redwoodjs/router'
 
-import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
-
 import { useAuth } from './auth'
+import AuthLayout from './layouts/AuthLayout/AuthLayout'
+import MainLayout from './layouts/MainLayout/MainLayout'
+import AuthPage from './pages/AuthPage/AuthPage'
+import TermsAndConditionsPage from './pages/TermsAndConditions/TermsAndConditions'
 
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
-      <Set wrap={ScaffoldLayout} title="Events" titleTo="events" buttonLabel="New Event" buttonTo="newEvent">
-        <Route path="/new" page={EventNewEventPage} name="newEvent" />
-        <Route path="/{id:Int}/edit" page={EventEditEventPage} name="editEvent" />
-        <Route path="/{id:Int}" page={EventEventPage} name="event" />
+      <Set wrap={MainLayout} title="Events" titleTo="events">
+        {/* <Private unauthenticated="events">
+          <Route path="/new" page={EventNewEventPage} name="newEvent" />
+          <Route path="/{id:Int}/edit" page={EventEditEventPage} name="editEvent" />
+        </Private> */}
+        {/* <Route path="/{id:Int}" page={EventEventPage} name="event" /> */}
         <Route path="/" page={EventEventsPage} name="events" />
       </Set>
+
+      <Set wrap={AuthLayout} title="Authentication" titleTo="auth">
+        <Route path="/auth" page={AuthPage} name="auth" />
+        <Route path="/terms" page={TermsAndConditionsPage} name="termsAndConditions" />
+      </Set>
+
       <Route notfound page={NotFoundPage} />
     </Router>
   )
