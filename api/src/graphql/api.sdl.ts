@@ -17,7 +17,6 @@ export const schema = gql`
     name: String
     photoUrl: String
     role: String
-    updatedAt: DateTime!
   }
 
   type Contact {

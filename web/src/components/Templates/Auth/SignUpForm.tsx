@@ -6,7 +6,7 @@ import { Form } from '@redwoodjs/forms'
 import { Link, routes } from '@redwoodjs/router'
 
 import Body from 'src/components/Atoms/Body'
-import { Header } from 'src/components/Atoms/Header'
+import Header from 'src/components/Atoms/Header'
 import PawPrint from 'src/components/Atoms/Icons/PawPrint'
 import CheckboxInput from 'src/components/Atoms/Inputs/Checkbox'
 import EmailInput from 'src/components/Atoms/Inputs/Email'

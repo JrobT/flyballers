@@ -14,6 +14,12 @@ export default async () => {
     await db.club.createMany({
       data: [{ name: 'Bassetts' }, { name: 'TVR' }],
     })
+    await db.contact.createMany({
+      data: [
+        { clubId: 1, email: 'test@test.com', name: 'User 1' },
+        { clubId: 2, email: 'test@test.com', name: 'User 2' },
+      ],
+    })
     await db.event.createMany({
       data: [
         { clubId: 1, name: 'A super fun event' },
@@ -39,29 +45,53 @@ export default async () => {
         { eventId: 4, date: theDayAfterTheDayAfterTomorrow.toDate() },
       ],
     })
-
-    // If using dbAuth and seeding users, you'll need to add a `hashedPassword`
-    // and associated `salt` to their record. Here's how to create them using
-    // the same algorithm that dbAuth uses internally:
-    //
-    //   import { hashPassword } from '@redwoodjs/auth-dbauth-api'
-    //
-    //   const users = [
-    //     { name: 'john', email: 'john@example.com', password: 'secret1' },
-    //     { name: 'jane', email: 'jane@example.com', password: 'secret2' }
-    //   ]
-    //
-    //   for (user of users) {
-    //     const [hashedPassword, salt] = hashPassword(user.password)
-    //     await db.user.create({
-    //       data: {
-    //         name: user.name,
-    //         email: user.email,
-    //         hashedPassword,
-    //         salt
-    //       }
-    //     })
-    //   }
+    await db.schedule.createMany({
+      data: [
+        { eventDayId: 1 },
+        { eventDayId: 2 },
+        { eventDayId: 3 },
+        { eventDayId: 4 },
+        { eventDayId: 5 },
+        { eventDayId: 6 },
+        // No 7-9 as the schedules haven't be created yet.
+      ],
+    })
+    await db.race.createMany({
+      data: [
+        {
+          class: 'FOUNDATION',
+          division: 1,
+          scheduleId: 1,
+          team1: 'Team 1',
+          team2: 'Team 2',
+          type: 'SINGLES',
+        },
+        {
+          class: 'OPEN',
+          division: 1,
+          scheduleId: 1,
+          team1: 'Team 1',
+          team2: 'Team 2',
+          type: 'TEAMS',
+        },
+        {
+          class: 'FOUNDATION',
+          division: 2,
+          scheduleId: 1,
+          team1: 'Team 3',
+          team2: 'Team 4',
+          type: 'SINGLES',
+        },
+        {
+          class: 'OPEN',
+          division: 1,
+          scheduleId: 1,
+          team1: 'Team 3',
+          team2: 'Team 4',
+          type: 'TEAMS',
+        },
+      ],
+    })
   } catch (error) {
     console.warn('Please define your seed data.')
     console.error(error)

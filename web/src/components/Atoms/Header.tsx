@@ -5,11 +5,11 @@ interface HeaderProps {
   styles?: string
 }
 
-export const Header = ({
+const Header = ({
   category = 'primary',
   children,
   color = 'text-primary-900',
-  styles = 'text-2xl',
+  styles = '',
 }: HeaderProps) => {
   const className = `flex flex-row font-roboto leading-none tracking-tight ${color} ${
     category === 'primary'
@@ -19,3 +19,5 @@ export const Header = ({
 
   return <h1 className={className}>{children}</h1>
 }
+
+export default Header

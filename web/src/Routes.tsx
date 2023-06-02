@@ -4,6 +4,7 @@ import { useAuth } from './auth'
 import AuthLayout from './layouts/AuthLayout/AuthLayout'
 import MainLayout from './layouts/MainLayout/MainLayout'
 import AuthPage from './pages/AuthPage/AuthPage'
+import EventsPage from './pages/EventsPage/EventsPage'
 import TermsAndConditionsPage from './pages/TermsAndConditions/TermsAndConditions'
 
 const Routes = () => {
@@ -15,7 +16,7 @@ const Routes = () => {
           <Route path="/{id:Int}/edit" page={EventEditEventPage} name="editEvent" />
         </Private> */}
         {/* <Route path="/{id:Int}" page={EventEventPage} name="event" /> */}
-        <Route path="/" page={EventEventsPage} name="events" />
+        <Route path="/" page={EventsPage} name="events" />
       </Set>
 
       <Set wrap={AuthLayout} title="Authentication" titleTo="auth">

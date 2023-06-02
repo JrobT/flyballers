@@ -62,6 +62,14 @@ Navigate to <http://localhost:8910/posts/new>, fill in the title and body, and c
 
 Did we just create a post in the database? Yup! With `yarn rw g scaffold <model>`, Redwood created all the pages, components, and services necessary to perform all CRUD actions on our posts table.
 
+#### GraphQL
+
+Redwood uses GraphQL via Apollo Client. An important thing to note is that, if you make a change to the API via the SDL file, you will need to generate the new GraphQL types:
+
+```shell
+yarn rw g types
+```
+
 #### Frontend first with Storybook
 
 Don't know what your data models look like?
@@ -114,8 +122,6 @@ Redwood is designed for both serverless deploy targets like Netlify and Vercel a
 ```shell
 yarn rw setup deploy --help
 ```
-
-Don't go live without auth!
 
 Lock down your front and backends with Redwood's built-in, database-backed authentication system ([dbAuth](https://redwoodjs.com/docs/authentication#self-hosted-auth-installation-and-setup)), or integrate with nearly a dozen third party auth providers:
 
@@ -170,6 +176,8 @@ To incorporate atomic design in a Redwood project, you can follow these steps:
 _Flyballers_ was built using [Supabase](https://supabase.com/) on the backend.
 
 For development, please create your own test database within your account. Once you've done that, set the relevant environment variables in your `.env` file as per the [documentation](https://supabase.com/docs/guides/integrations/prisma#connection-pooling-with-supabase).
+
+> You should switch off email validation on sign up on your Supabase instance.
 
 ### Vercel
 

@@ -3,10 +3,9 @@ CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "clubId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "email" TEXT NOT NULL,
-    "name" TEXT,
+    "email" VARCHAR(255) NOT NULL,
+    "name" VARCHAR(255),
     "photoUrl" TEXT,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );

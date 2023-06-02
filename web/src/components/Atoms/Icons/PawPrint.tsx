@@ -1,6 +1,10 @@
-const PawPrint = () => (
+interface Props {
+  fill?: string
+}
+
+const PawPrint = ({ fill = '#ffffff' }: Props) => (
   <svg
-    fill="#ffffff"
+    fill={fill}
     height={50}
     viewBox="0 -1 26 26"
     width={50}

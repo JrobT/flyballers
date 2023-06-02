@@ -36,5 +36,8 @@
       "api",
       "web"
     ]
+  },
+  "dependencies": {
+    "dayjs": "^1.11.8"
   }
 }

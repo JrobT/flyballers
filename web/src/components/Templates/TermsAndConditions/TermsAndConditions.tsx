@@ -2,7 +2,7 @@ import { back } from '@redwoodjs/router'
 
 import Body from 'src/components/Atoms/Body'
 import Button from 'src/components/Atoms/Button'
-import { Header } from 'src/components/Atoms/Header'
+import Header from 'src/components/Atoms/Header'
 import NumberedList from 'src/components/Atoms/NumberedList'
 
 const TermsAndConditions = () => {

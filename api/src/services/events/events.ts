@@ -11,18 +11,22 @@ import { onlyOne } from '../utils/arrays'
 import { getStartOfDate } from '../utils/date'
 import { PaginationParams, SKIP_DEFAULT } from '../utils/pagination'
 
-type EventsQueryParams = {
+type EventsQueryParams = PaginationParams & {
   inProgressOnly?: boolean
   pastOnly?: boolean
   upcomingOnly?: boolean
-} & PaginationParams
+}
 
-export const events: QueryResolvers['events'] = async ({
-  inProgressOnly = false,
-  pastOnly = false,
-  skip = SKIP_DEFAULT,
-  upcomingOnly = false,
-}: EventsQueryParams) => {
+export const events: QueryResolvers['events'] = async (
+  params: EventsQueryParams = {}
+) => {
+  const {
+    inProgressOnly = false,
+    pastOnly = false,
+    skip = SKIP_DEFAULT,
+    upcomingOnly = false,
+  } = params
+
   const isQueryForAllEvents = [inProgressOnly, pastOnly, upcomingOnly].every(
     (queryParam) => !queryParam
   )
