@@ -1,7 +1,5 @@
-import EventsCell from 'src/components/Organisms/EventsCell/EventsCell'
+import Events from '../../components/Templates/Events/Events'
 
-const EventsPage = () => {
-  return <EventsCell />
-}
+const EventsPageContainer: React.FC = () => <Events />
 
-export default EventsPage
+export default EventsPageContainer

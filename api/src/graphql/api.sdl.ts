@@ -68,8 +68,14 @@ export const schema = gql`
     type: Type!
   }
 
+  type EventsResponse {
+    inFuture: [Event!]!
+    inPast: [Event!]!
+    inProgress: [Event!]!
+  }
+
   type Query {
-    events: [Event!]! @skipAuth
+    events: EventsResponse @skipAuth
     event(id: Int!): Event @skipAuth
   }
 
