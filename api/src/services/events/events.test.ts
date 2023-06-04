@@ -8,7 +8,9 @@ describe('events', () => {
     const expected = Object.keys(scenario.event)
     const actual = await events()
 
-    expect(actual.length).toEqual(expected.length)
+    expect(
+      actual.inFuture.length + actual.inPast.length + actual.inProgress.length
+    ).toEqual(expected.length)
   })
 
   scenario('returns a single event', async (scenario: StandardType) => {
@@ -20,7 +22,15 @@ describe('events', () => {
 
   scenario('creates a event', async (scenario: StandardType) => {
     const actual = await createEvent({
-      input: { clubId: scenario.event.two.clubId, name: 'Event 4' },
+      input: {
+        addressId: scenario.event.two.addressId,
+        clubId: scenario.event.two.clubId,
+        entryFee: scenario.event.two.entryFee,
+        name: 'Event 4',
+        notes: scenario.event.two.notes,
+        openDate: scenario.event.two.openDate,
+        surfaceId: scenario.event.two.surfaceId,
+      },
     })
 
     expect(actual.clubId).toEqual(scenario.event.two.clubId)
