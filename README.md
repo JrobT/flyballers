@@ -22,7 +22,7 @@ yarn install
 Then start the development server:
 
 ```shell
-yarn redwood dev
+yarn rw dev
 ```
 
 Your browser should automatically open to <http://localhost:8910>.
@@ -31,12 +31,10 @@ Your browser should automatically open to <http://localhost:8910>.
 >
 > Congratulations on running your first Redwood CLI command!
 > From dev to deploy, the CLI is with you the whole way.
-> And there's quite a few commands at your disposal: `yarn redwood --help`.
+> And there's quite a few commands at your disposal: `yarn rw --help`.
 > For all the details, see the [CLI reference](https://redwoodjs.com/docs/cli-commands).
 
 #### Prisma and the database
-
-Redwood wouldn't be a full-stack framework without a database. It all starts with the schema.
 
 Redwood uses [Prisma](https://www.prisma.io/), a next-gen Node.js and TypeScript ORM, to talk to the database. Prisma's schema offers a declarative way of defining your app's data models. And Prisma [Migrate](https://www.prisma.io/migrate) uses that schema to make database migrations hassle-free:
 
@@ -55,7 +53,7 @@ You'll be prompted for the name of your migration, e.g. 'create posts'.
 Now you can generate everything we need to perform all the CRUD (Create, Retrieve, Update, Delete) actions on our model:
 
 ```shell
-yarn redwood g scaffold post
+yarn rw g scaffold post
 ```
 
 Navigate to <http://localhost:8910/posts/new>, fill in the title and body, and click "Save":
@@ -72,9 +70,7 @@ yarn rw g types
 
 #### Frontend first with Storybook
 
-Don't know what your data models look like?
-
-That's more than ok — Redwood integrates Storybook so that you can work on design without worrying about data.
+Redwood integrates Storybook so that you can work on design without worrying about data.
 
 Mockup, build, and verify your React components, even in complete isolation from the backend:
 
@@ -95,6 +91,8 @@ Redwood fully integrates Jest with the front and the backends and makes it easy 
 ```shell
 yarn rw test
 yarn rw test --no-watch
+yarn rw test api --no-watch
+yarn rw test web --no-watch
 ```
 
 To make the integration even more seamless, Redwood augments Jest with database [scenarios](https://redwoodjs.com/docs/testing.md#scenarios) and [GraphQL mocking](https://redwoodjs.com/docs/testing.md#mocking-graphql-calls).
@@ -105,7 +103,7 @@ To run integration tests locally, Prisma requires a local running Postgres insta
 yarn docker:up
 ```
 
-After which you can run Jest as per Redwood's design. Alternatively, if you wanted to run the full test suite locally, you can do that using the NPM script `yarn test`.
+After which you can run Jest as per Redwood's design. Alternatively, if you wanted to run the full test suite locally, you can do that using the Yarn script `yarn test`.
 
 You can also take down the container once you've finished running integration tests:
 
@@ -122,16 +120,6 @@ Redwood is designed for both serverless deploy targets like Netlify and Vercel a
 ```shell
 yarn rw setup deploy --help
 ```
-
-Lock down your front and backends with Redwood's built-in, database-backed authentication system ([dbAuth](https://redwoodjs.com/docs/authentication#self-hosted-auth-installation-and-setup)), or integrate with nearly a dozen third party auth providers:
-
-```shell
-yarn rw setup auth --help
-```
-
-#### Next Steps
-
-The best way to learn Redwood is by going through the comprehensive [tutorial](https://redwoodjs.com/docs/tutorial/foreword) and joining the community (via the [Discourse forum](https://community.redwoodjs.com) or the [Discord server](https://discord.gg/redwoodjs)).
 
 ### Linting and Formatting
 
