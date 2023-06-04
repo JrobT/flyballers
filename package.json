@@ -25,6 +25,7 @@
   },
   "private": true,
   "scripts": {
+    "db:reset": "yarn rw prisma db push --force-reset --accept-data-loss",
     "docker:down": "docker-compose down",
     "docker:up": "docker-compose up -d",
     "format": "eslint --ext .js,jsx,.ts,.tsx --fix --max-warnings 0 . && prettier --write \"(api|web)/src/**/*.{js,jsx,ts,tsx}\" --loglevel warn && yarn rw prisma format",
@@ -38,6 +39,7 @@
     ]
   },
   "dependencies": {
+    "@what3words/javascript-components": "^4.1.2",
     "dayjs": "^1.11.8"
   }
 }

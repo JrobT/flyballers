@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form'
 
 import { Form } from '@redwoodjs/forms'
 
-import Body from 'src/components/Atoms/Body'
-import Header from 'src/components/Atoms/Header'
+import Body from 'src/components/Atoms/Typography/Body'
+import Header from 'src/components/Atoms/Typography/Header'
 import PawPrint from 'src/components/Atoms/Icons/PawPrint'
 import EmailInput from 'src/components/Atoms/Inputs/Email'
 import PasswordInput from 'src/components/Atoms/Inputs/Password'

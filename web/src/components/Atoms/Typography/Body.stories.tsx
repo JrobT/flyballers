@@ -4,7 +4,7 @@ import Body from './Body'
 
 export default {
   component: Body,
-  title: 'Atoms/Body',
+  title: 'Atoms/Typography/Body',
 } as ComponentMeta<typeof Body>
 
 const Template: Story<{ content: string }> = (_args) => (

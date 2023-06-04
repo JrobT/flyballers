@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import Body from '../Atoms/Body'
+import Body from '../Atoms/Typography/Body'
 import Button from '../Atoms/Button'
 
 import Banner from './Banner'

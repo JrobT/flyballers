@@ -101,8 +101,12 @@ export const deleteEvent: MutationResolvers['deleteEvent'] = ({ id }) =>
   })
 
 export const Event: EventRelationResolvers = {
+  address: (_obj, { root }) =>
+    db.event.findUnique({ where: { id: root?.id } }).address(),
   club: (_obj, { root }) =>
     db.event.findUnique({ where: { id: root?.id } }).club(),
   eventDays: (_obj, { root }) =>
     db.event.findUnique({ where: { id: root?.id } }).eventDays(),
+  surface: (_obj, { root }) =>
+    db.event.findUnique({ where: { id: root?.id } }).surface(),
 }

@@ -13,7 +13,9 @@ const MainLayout = ({ children }: LayoutProps) => {
       <header>
         <Navbar />
       </header>
-      <main>{children}</main>
+      <main>
+        <div className="m-1 flex flex-col p-1 md:m-3 md:p-3">{children}</div>
+      </main>
       <footer>
         <Cookies />
       </footer>

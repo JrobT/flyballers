@@ -4,7 +4,7 @@ import { Event } from 'types/graphql'
 
 import { useQuery } from '@redwoodjs/web'
 
-import Header from 'src/components/Atoms/Header'
+import Header from 'src/components/Atoms/Typography/Header'
 
 import EventTable from '../../Molecules/Events/EventTable'
 
@@ -15,33 +15,34 @@ type EventsResponse = {
 }
 
 const GET_EVENTS = gql`
-  query GetEvents {
-    events {
-      inFuture {
-        ...EventFields
-      }
-      inPast {
-        ...EventFields
-      }
-      inProgress {
-        ...EventFields
-      }
-    }
-  }
-
-  fragment EventFields on Event {
+  fragment GetEventsEventFields on Event {
     id
     name
     club {
+      id
       name
     }
     eventDays {
       date
     }
   }
+
+  query GetEvents {
+    events {
+      inFuture {
+        ...GetEventsEventFields
+      }
+      inPast {
+        ...GetEventsEventFields
+      }
+      inProgress {
+        ...GetEventsEventFields
+      }
+    }
+  }
 `
 
-const EventsPage: React.FC = () => {
+const Events: React.FC = () => {
   const [showInFuture, setShowInFuture] = useState<boolean>(true)
   const [showInPast, setShowInPast] = useState<boolean>(true)
   const [showInProgress, setShowInProgress] = useState<boolean>(true)
@@ -85,7 +86,7 @@ const EventsPage: React.FC = () => {
   const { events }: { events: EventsResponse } = data
 
   return (
-    <div className="m-2 flex flex-col p-2 md:m-4 md:p-4 lg:m-6 lg:p-6">
+    <>
       {events.inPast.length > 0 && (
         <div className="md:py-2 lg:py-4">
           <Header category="secondary">
@@ -160,8 +161,8 @@ const EventsPage: React.FC = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   )
 }
 
-export default EventsPage
+export default Events

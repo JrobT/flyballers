@@ -2543,6 +2543,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@googlemaps/js-api-loader@npm:1.15.1":
+  version: 1.15.1
+  resolution: "@googlemaps/js-api-loader@npm:1.15.1"
+  dependencies:
+    fast-deep-equal: ^3.1.3
+  checksum: 3f1ee79c81e6797fab0d6229ef0e4ae840721fe0c1916dffd359709d33346cda9d5e2f1334bc179aff1bbf464c0724dbb0364c8b33a8291e94ecdc04b7cfce0e
+  languageName: node
+  linkType: hard
+
+"@googlemaps/js-api-loader@npm:^1.12.11":
+  version: 1.15.2
+  resolution: "@googlemaps/js-api-loader@npm:1.15.2"
+  dependencies:
+    fast-deep-equal: ^3.1.3
+  checksum: e27657af0ba569c45e60dd2dbb606939515f83bd2bd2c126671fd672243885219a1938129b244f13a558cd4e399f24336357bae69754b6daa2903496af2209c4
+  languageName: node
+  linkType: hard
+
+"@googlemaps/markerclusterer@npm:2.0.15":
+  version: 2.0.15
+  resolution: "@googlemaps/markerclusterer@npm:2.0.15"
+  dependencies:
+    fast-deep-equal: ^3.1.3
+    supercluster: ^7.1.3
+  checksum: 7e66a3b73d4b6c1d5329caa7857e149171262213741c648a45fc19204036ea66392986e96c0886ec43ac66b9aa52c8a05f80c3e6a58ccba327db45f418b3c965
+  languageName: node
+  linkType: hard
+
 "@graphql-codegen/add@npm:4.0.1":
   version: 4.0.1
   resolution: "@graphql-codegen/add@npm:4.0.1"
@@ -4154,6 +4182,37 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-google-maps/api@npm:2.18.1":
+  version: 2.18.1
+  resolution: "@react-google-maps/api@npm:2.18.1"
+  dependencies:
+    "@googlemaps/js-api-loader": 1.15.1
+    "@googlemaps/markerclusterer": 2.0.15
+    "@react-google-maps/infobox": 2.16.0
+    "@react-google-maps/marker-clusterer": 2.16.1
+    "@types/google.maps": 3.50.5
+    invariant: 2.2.4
+  peerDependencies:
+    react: ^16.8 || ^17 || ^18
+    react-dom: ^16.8 || ^17 || ^18
+  checksum: 4c795ddac368229825280d25955283f01022bc018eb25989de7d6ba14dd348af915a45aaed705bb965af0329c8bb224148b3eda24c1d75b50b9731ec2d5185b5
+  languageName: node
+  linkType: hard
+
+"@react-google-maps/infobox@npm:2.16.0":
+  version: 2.16.0
+  resolution: "@react-google-maps/infobox@npm:2.16.0"
+  checksum: 3358540efd1654f4a4acc64312552531fc8731a0a4ea297913ebbf7c5c96180d07aa57f273da4afeffda2ab421b58f25f4a25dc1b6d6401067cc4b0a756317d2
+  languageName: node
+  linkType: hard
+
+"@react-google-maps/marker-clusterer@npm:2.16.1":
+  version: 2.16.1
+  resolution: "@react-google-maps/marker-clusterer@npm:2.16.1"
+  checksum: 18d5cdf672825e0528e399a975db9f2c1583c9af1abade8525393eb30f95f8bcb4df3ae5eec48f6fac034cd0a03f6c61b5a4b2b5cff0fcd78e840b930e7b0bb9
+  languageName: node
+  linkType: hard
+
 "@redwoodjs/api-server@npm:5.2.3":
   version: 5.2.3
   resolution: "@redwoodjs/api-server@npm:5.2.3"
@@ -4759,6 +4818,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stencil/core@npm:^3.0.0":
+  version: 3.3.1
+  resolution: "@stencil/core@npm:3.3.1"
+  bin:
+    stencil: bin/stencil
+  checksum: 12a9ce58d83d841d46ed7d1b46aeb9b0014f8fd03b8ce4042f1c5c5064097a890744db7124115e99c4a7554e8d11af6625143949c072245ddafb18c12489c49b
+  languageName: node
+  linkType: hard
+
 "@storybook/addon-a11y@npm:6.5.17-alpha.0":
   version: 6.5.17-alpha.0
   resolution: "@storybook/addon-a11y@npm:6.5.17-alpha.0"
@@ -5112,7 +5180,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addons@npm:^7.0.18":
+"@storybook/addons@npm:7.0.18":
   version: 7.0.18
   resolution: "@storybook/addons@npm:7.0.18"
   dependencies:
@@ -6081,7 +6149,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/theming@npm:7.0.18, @storybook/theming@npm:^7.0.18":
+"@storybook/theming@npm:7.0.18":
   version: 7.0.18
   resolution: "@storybook/theming@npm:7.0.18"
   dependencies:
@@ -6615,6 +6683,20 @@ __metadata:
     "@types/minimatch": "*"
     "@types/node": "*"
   checksum: a8eb5d5cb5c48fc58c7ca3ff1e1ddf771ee07ca5043da6e4871e6757b4472e2e73b4cfef2644c38983174a4bc728c73f8da02845c28a1212f98cabd293ecae98
+  languageName: node
+  linkType: hard
+
+"@types/google.maps@npm:3.50.5":
+  version: 3.50.5
+  resolution: "@types/google.maps@npm:3.50.5"
+  checksum: df07121bc3a7c5511f2a6f31d461a72f74f24ab68ce7303f11d6676616d1909733b76c238836a41a4ed569666c2fa0dac4859a12ae4144c4cc687a125f59949a
+  languageName: node
+  linkType: hard
+
+"@types/google.maps@npm:3.53.2":
+  version: 3.53.2
+  resolution: "@types/google.maps@npm:3.53.2"
+  checksum: a8a775704d68123fb4534c90cd26a9cbb58fd3a4b892710d179e3a7ac662b22aed60ddd8bb34953921bcc5ee8f9ed0788259161953771b983006cdd3ac5c21b1
   languageName: node
   linkType: hard
 
@@ -7648,6 +7730,36 @@ __metadata:
     webpack-dev-server:
       optional: true
   checksum: 9e6c222cf98c060ab7e76879d60308486451f16e270d834aa3de11a72fab3c1857d78231935f52867d2300c72c6b61f6d62d77cbe673fbb3d95c7d5862b3fcc4
+  languageName: node
+  linkType: hard
+
+"@what3words/api@npm:^4.0.8":
+  version: 4.0.9
+  resolution: "@what3words/api@npm:4.0.9"
+  peerDependencies:
+    axios: ^0.21.2
+    cross-fetch: ^3.1.5
+  peerDependenciesMeta:
+    axios:
+      optional: true
+    cross-fetch:
+      optional: true
+  checksum: e5f51bb37d0b3c1b9880d289089ef732e1845ddfa8d8b8dc607378e58fb0a21344801b981866e4f60819b726612ecb3871add51a83a30160200a35e46d848f21
+  languageName: node
+  linkType: hard
+
+"@what3words/javascript-components@npm:^4.1.2":
+  version: 4.1.2
+  resolution: "@what3words/javascript-components@npm:4.1.2"
+  dependencies:
+    "@googlemaps/js-api-loader": ^1.12.11
+    "@stencil/core": ^3.0.0
+    "@what3words/api": ^4.0.8
+    axios: ^0.21.1
+    cross-fetch: ^3.1.0
+    querystring: ^0.2.1
+    uuid: ^8.3.2
+  checksum: 87e63a80a4cf6852654b648c8a11af193bb0807d8fd410ad5642ca2b452afbb8b4add3fdfe9c3fc5cb440da79c0a1930185d97502bad706826f93167814dbcc3
   languageName: node
   linkType: hard
 
@@ -8710,6 +8822,15 @@ __metadata:
   version: 4.7.1
   resolution: "axe-core@npm:4.7.1"
   checksum: 890dd858a6f74558280d6a926270890c041134d3b1a98f018783a9390f68595ad80fdb07a3e13727e085668d3be655e11dc6b490b3ae4c53874a55a1e1bc17bf
+  languageName: node
+  linkType: hard
+
+"axios@npm:^0.21.1":
+  version: 0.21.4
+  resolution: "axios@npm:0.21.4"
+  dependencies:
+    follow-redirects: ^1.14.0
+  checksum: fbcff55ec68f71f02d3773d467db2fcecdf04e749826c82c2427a232f9eba63242150a05f15af9ef15818352b814257541155de0281f8fb2b7e8a5b79f7f2142
   languageName: node
   linkType: hard
 
@@ -10877,7 +10998,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-fetch@npm:^3.1.5":
+"cross-fetch@npm:^3.1.0, cross-fetch@npm:^3.1.5":
   version: 3.1.6
   resolution: "cross-fetch@npm:3.1.6"
   dependencies:
@@ -13522,7 +13643,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.0.0":
+"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.14.0":
   version: 1.15.2
   resolution: "follow-redirects@npm:1.15.2"
   peerDependenciesMeta:
@@ -15225,7 +15346,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"invariant@npm:^2.2.4":
+"invariant@npm:2.2.4, invariant@npm:^2.2.4":
   version: 2.2.4
   resolution: "invariant@npm:2.2.4"
   dependencies:
@@ -16896,6 +17017,13 @@ __metadata:
     jwa: ^1.4.1
     safe-buffer: ^5.0.1
   checksum: e770704533d92df358adad7d1261fdecad4d7b66fa153ba80d047e03ca0f1f73007ce5ed3fbc04d2eba09ba6e7e6e645f351e08e5ab51614df1b0aa4f384dfff
+  languageName: node
+  linkType: hard
+
+"kdbush@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "kdbush@npm:3.0.0"
+  checksum: 3fc8795870bd04f60627e7345b26fd0644beb91bc4164912c9d9378b39c674ba01c31db68ecaf6266d51c9ad81bf5b770b7effa51eeee37553d38293a094a686
   languageName: node
   linkType: hard
 
@@ -20697,6 +20825,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"querystring@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "querystring@npm:0.2.1"
+  checksum: 6841b32bec4f16ffe7f5b5e4373b47ad451f079cde3a7f45e63e550f0ecfd8f8189ef81fb50079413b3fc1c59b06146e4c98192cb74ed7981aca72090466cd94
+  languageName: node
+  linkType: hard
+
 "querystringify@npm:^2.1.1":
   version: 2.2.0
   resolution: "querystringify@npm:2.2.0"
@@ -21697,6 +21832,7 @@ __metadata:
   dependencies:
     "@redwoodjs/auth-supabase-setup": 5.2.3
     "@redwoodjs/core": 5.2.3
+    "@what3words/javascript-components": ^4.1.2
     dayjs: ^1.11.8
     prettier: 2.8.8
     prettier-plugin-tailwindcss: 0.3.0
@@ -23087,6 +23223,15 @@ __metadata:
     sucrase: bin/sucrase
     sucrase-node: bin/sucrase-node
   checksum: c5f2d0c49a2462da3440a14ed62caad655c27919408471141b6866b18be9b29635e8b5e9246cc476a2c3df84e94a8d5498903f0f4e765c50d95d9ff360b95f79
+  languageName: node
+  linkType: hard
+
+"supercluster@npm:^7.1.3":
+  version: 7.1.5
+  resolution: "supercluster@npm:7.1.5"
+  dependencies:
+    kdbush: ^3.0.0
+  checksum: bbebf45927d0019831731c94b78d1c9a1f3e2da0be9875d7ea75c6f261487e0f15d3f1822a9a49256e3c1672bdfb9138f9a5e44e2de99edb06cd1e758083e12d
   languageName: node
   linkType: hard
 
@@ -24797,15 +24942,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "web@workspace:web"
   dependencies:
+    "@react-google-maps/api": 2.18.1
     "@redwoodjs/auth-supabase-web": 5.2.3
     "@redwoodjs/forms": 5.2.3
     "@redwoodjs/router": 5.2.3
     "@redwoodjs/web": 5.2.3
-    "@storybook/addons": ^7.0.18
-    "@storybook/theming": ^7.0.18
+    "@storybook/addons": 7.0.18
+    "@storybook/theming": 7.0.18
     "@supabase/supabase-js": ^2
     "@tailwindcss/typography": 0.5.9
     "@types/autoprefixer": 10.2.0
+    "@types/google.maps": 3.53.2
     autoprefixer: 10.4.14
     humanize-string: 2.1.0
     postcss: 8.4.24

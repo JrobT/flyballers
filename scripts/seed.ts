@@ -16,16 +16,69 @@ export default async () => {
     })
     await db.contact.createMany({
       data: [
-        { clubId: 1, email: 'test@test.com', name: 'User 1' },
-        { clubId: 2, email: 'test@test.com', name: 'User 2' },
+        { clubId: 1, email: 'test1@test.com', name: 'User 1' },
+        { clubId: 2, email: 'test2@test.com', name: 'User 2' },
       ],
     })
+
+    await db.address.createMany({
+      data: [
+        {
+          city: 'Hullavington',
+          postalCode: 'SN14 6QP',
+          street: 'Court Farm',
+          what3words: 'explained.leaps.cute',
+        },
+      ],
+    })
+    await db.coordinate.createMany({
+      data: [{ addressId: 1, latitude: 51.542846, longitude: -2.145374 }],
+    })
+
+    await db.surface.createMany({
+      data: [{ name: 'Grass' }],
+    })
+
     await db.event.createMany({
       data: [
-        { clubId: 1, name: 'A super fun event' },
-        { clubId: 1, name: 'Event' },
-        { clubId: 1, name: 'An event with a really really long name' },
-        { clubId: 2, name: "A different club's event" },
+        {
+          addressId: 1,
+          clubId: 1,
+          entryFee: 80,
+          name: 'A super fun event',
+          notes: '',
+          openDate: twoDaysBack.toDate(),
+          surfaceId: 1,
+        },
+        {
+          addressId: 1,
+          closeDate: yesterday.toDate(),
+          clubId: 1,
+          entryFee: 80.5,
+          name: 'Event',
+          notes: '',
+          openDate: twoDaysBack.toDate(),
+          surfaceId: 1,
+        },
+        {
+          addressId: 1,
+          closeDate: theDayAfterTomorrow.toDate(),
+          clubId: 1,
+          entryFee: 8.5,
+          name: 'An event with a really really long name',
+          notes: '',
+          openDate: twoDaysBack.toDate(),
+          surfaceId: 1,
+        },
+        {
+          addressId: 1,
+          clubId: 2,
+          entryFee: 0.5,
+          name: "A different club's event",
+          notes: '',
+          openDate: tomorrow.toDate(),
+          surfaceId: 1,
+        },
       ],
     })
     await db.eventDay.createMany({
@@ -45,6 +98,7 @@ export default async () => {
         { eventId: 4, date: theDayAfterTheDayAfterTomorrow.toDate() },
       ],
     })
+
     await db.schedule.createMany({
       data: [
         { eventDayId: 1 },

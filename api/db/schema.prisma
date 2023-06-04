@@ -9,24 +9,17 @@ generator client {
   binaryTargets = "native"
 }
 
-enum Class {
-  FOUNDATION
-  OPEN
-}
-
-enum Type {
-  SINGLES
-  TEAMS
-}
-
 model User {
   id        Int      @id @default(autoincrement())
   club      Club     @relation(fields: [clubId], references: [id])
-  clubId    Int      @unique
+  clubId    Int
   createdAt DateTime @default(now())
   email     String   @unique @db.VarChar(255)
   name      String?  @db.VarChar(255)
   photoUrl  String?
+
+  @@index([clubId])
+  @@index([email])
 }
 
 model Club {
@@ -43,19 +36,58 @@ model Contact {
   id     Int    @id @default(autoincrement())
   club   Club   @relation(fields: [clubId], references: [id])
   clubId Int    @unique
-  email  String @unique @db.VarChar(255)
+  email  String @db.VarChar(255)
   name   String @db.VarChar(255)
+
+  @@index([email])
 }
 
 model Event {
   id        Int        @id @default(autoincrement())
+  address   Address    @relation(fields: [addressId], references: [id])
+  addressId Int
+  closeDate DateTime?
   club      Club       @relation(fields: [clubId], references: [id])
   clubId    Int
+  entryFee  Float
   eventDays EventDay[]
   name      String     @db.VarChar(255)
+  notes     String     @db.VarChar(255)
+  openDate  DateTime
+  surface   Surface    @relation(fields: [surfaceId], references: [id])
+  surfaceId Int
 
+  @@index([addressId])
   @@index([clubId])
   @@index([name])
+}
+
+model Address {
+  id          Int         @id @default(autoincrement())
+  city        String      @db.VarChar(255)
+  coordinates Coordinate?
+  events      Event[]
+  postalCode  String      @db.VarChar(255)
+  street      String      @db.VarChar(255)
+  what3words  String?     @db.VarChar(255)
+
+  @@index([postalCode])
+}
+
+model Coordinate {
+  id        Int     @id @default(autoincrement())
+  address   Address @relation(fields: [addressId], references: [id])
+  addressId Int     @unique
+  latitude  Float
+  longitude Float
+
+  @@index([addressId])
+}
+
+model Surface {
+  id     Int     @id @default(autoincrement())
+  events Event[]
+  name   String  @db.VarChar(255)
 }
 
 model EventDay {
@@ -76,6 +108,16 @@ model Schedule {
   races      Race[]
 
   @@index([eventDayId])
+}
+
+enum Class {
+  FOUNDATION
+  OPEN
+}
+
+enum Type {
+  SINGLES
+  TEAMS
 }
 
 model Race {

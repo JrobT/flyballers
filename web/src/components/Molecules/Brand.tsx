@@ -1,4 +1,4 @@
-import Header from '../Atoms/Header'
+import Header from '../Atoms/Typography/Header'
 
 const Brand = () => (
   <div className="flex flex-shrink-0">

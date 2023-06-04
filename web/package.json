@@ -10,6 +10,7 @@
     ]
   },
   "dependencies": {
+    "@react-google-maps/api": "2.18.1",
     "@redwoodjs/auth-supabase-web": "5.2.3",
     "@redwoodjs/forms": "5.2.3",
     "@redwoodjs/router": "5.2.3",
@@ -22,9 +23,10 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@storybook/addons": "^7.0.18",
-    "@storybook/theming": "^7.0.18",
+    "@storybook/addons": "7.0.18",
+    "@storybook/theming": "7.0.18",
     "@types/autoprefixer": "10.2.0",
+    "@types/google.maps": "3.53.2",
     "autoprefixer": "10.4.14",
     "postcss": "8.4.24",
     "postcss-loader": "7.3.2",

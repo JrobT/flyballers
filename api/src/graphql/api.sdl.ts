@@ -1,22 +1,19 @@
 export const schema = gql`
-  enum Class {
-    FOUNDATION
-    OPEN
-  }
-
-  enum Type {
-    SINGLES
-    TEAMS
-  }
-
   type User {
     id: Int!
     club: Club!
+    clubId: Int!
     createdAt: DateTime!
     email: String!
     name: String
     photoUrl: String
-    role: String
+  }
+
+  type Club {
+    id: Int!
+    contact: Contact
+    events: [Event]!
+    name: String!
   }
 
   type Contact {
@@ -27,18 +24,42 @@ export const schema = gql`
     name: String!
   }
 
-  type Club {
-    id: Int!
-    contact: Contact
-    events: [Event]!
-    name: String!
-  }
-
   type Event {
     id: Int!
+    address: Address!
+    addressId: Int!
+    closeDate: DateTime
     club: Club!
     clubId: Int!
+    entryFee: Float!
     eventDays: [EventDay]!
+    name: String!
+    notes: String!
+    openDate: DateTime!
+    surface: Surface!
+    surfaceId: Int!
+  }
+
+  type Address {
+    id: Int!
+    city: String!
+    coordinates: Coordinate
+    postalCode: String!
+    street: String!
+    what3words: String
+  }
+
+  type Coordinate {
+    id: Int!
+    address: Address!
+    addressId: Int!
+    latitude: Float!
+    longitude: Float!
+  }
+
+  type Surface {
+    id: Int!
+    events: [Event]!
     name: String!
   }
 
@@ -55,6 +76,16 @@ export const schema = gql`
     eventDay: EventDay!
     eventDayId: Int!
     races: [Race]!
+  }
+
+  enum Class {
+    FOUNDATION
+    OPEN
+  }
+
+  enum Type {
+    SINGLES
+    TEAMS
   }
 
   type Race {
@@ -84,14 +115,70 @@ export const schema = gql`
     email: String!
   }
 
-  input CreateEventInput {
-    clubId: Int!
+  input CreateClubInput {
+    contactId: Int
     name: String!
   }
 
-  input UpdateEventInput {
-    clubId: Int
+  input UpdateClubInput {
+    contactId: Int
     name: String
+  }
+
+  input CreateContactInput {
+    clubId: Int!
+    email: String!
+    name: String!
+  }
+
+  input UpdateContactInput {
+    clubId: Int
+    email: String
+    name: String
+  }
+
+  input CreateAddressInput {
+    city: String!
+    postalCode: String!
+    street: String!
+    what3words: String
+  }
+
+  input UpdateAddressInput {
+    city: String
+    postalCode: String
+    street: String
+    what3words: String
+  }
+
+  input CreateSurfaceInput {
+    name: String!
+  }
+
+  input UpdateSurfaceInput {
+    name: String
+  }
+
+  input CreateEventInput {
+    addressId: Int!
+    closeDate: DateTime
+    clubId: Int!
+    entryFee: Float!
+    name: String!
+    notes: String!
+    openDate: DateTime!
+    surfaceId: Int!
+  }
+
+  input UpdateEventInput {
+    addressId: Int
+    closeDate: DateTime
+    clubId: Int
+    entryFee: Float
+    name: String
+    notes: String
+    openDate: DateTime
+    surfaceId: Int
   }
 
   type Mutation {

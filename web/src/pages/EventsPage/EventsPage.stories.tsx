@@ -5,6 +5,6 @@ import EventsPage from './EventsPage'
 export const generated = () => <EventsPage />
 
 export default {
-  title: 'Pages/EventsPage',
+  title: 'Pages/Events/EventsPage',
   component: EventsPage,
 } as ComponentMeta<typeof EventsPage>

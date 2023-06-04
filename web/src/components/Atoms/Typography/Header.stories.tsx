@@ -6,14 +6,14 @@ export default {
   argTypes: {
     category: {
       control: { type: 'radio' },
-      options: ['primary', 'secondary'],
+      options: ['primary', 'secondary', 'tertiary'],
     },
     color: {
       control: 'text',
     },
   },
   component: Header,
-  title: 'Atoms/Header',
+  title: 'Atoms/Typography/Header',
 } as ComponentMeta<typeof Header>
 
 const Template: Story<{ content: string }> = (args) => (
